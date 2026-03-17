@@ -1,68 +1,49 @@
-# Verwendete Skills
+# Skills Used In This Project
 
-Dieses Dokument sammelt die Skills, die fuer dieses Projekt bereits verwendet
-oder projektbezogen installiert wurden.
+This document tracks skills that have been installed or used while building the
+project.
 
-## Pflegehinweis
+## Maintenance Note
 
-Dieses Dokument soll bei jeder neuen Skill-Installation oder Skill-Nutzung fuer
-das Projekt aktualisiert werden.
+Update this file whenever a new skill is installed or a skill is actively used
+for project work.
 
-Zu dokumentieren sind mindestens:
+At minimum, document:
 
-- Skill-Name
-- Installations- oder Nutzungsstatus
-- Zweck im Projekt
-- betroffene Dateien oder Projektbereiche
-- sichtbares Ergebnis oder Einfluss auf den Projektstand
+- skill name
+- installation or usage status
+- purpose in the project
+- affected files or project areas
+- visible outcome or impact on the project
 
-## Aktuell relevante Skills
+## Current Skill Inventory
 
 ### `frontend-design`
 
 Status:
 
-- installiert
-- fuer dieses Projekt verwendet
+- installed
+- used for this project
 
-Zweck:
+Documentation:
 
-- visuelles Redesign des Frontends
-- staerkere UI-Hierarchie fuer Hero, Formular, Kartenbereich und Ergebnisansicht
-- atmosphaerischerer Look passend zu Fotografie, Reiseplanung und kreativem Tooling
-
-Bisher im Projekt angewendet auf:
-
-- `src/App.tsx`
-- `src/components/TripForm.tsx`
-- `src/components/ResultsPanel.tsx`
-- `src/components/TripMap.tsx`
-- `src/index.css`
-
-Ergebnis:
-
-- neuer Hero-Bereich mit Input-Preview
-- klarere Formularsektionen
-- staerkere visuelle Struktur fuer die Trip-Ausgabe
-- aufgewertete Kartenpraesentation
-- konsistenteres Farb- und Typografie-System
+- [frontend-design skill notes](skills/frontend-design.md)
 
 ### `skill-installer`
 
 Status:
 
-- verwendet
+- used
 
-Zweck:
+Purpose:
 
-- Installation externer Skills in die lokale Codex-Skill-Umgebung
+- installing external skills into the local Codex skill environment
 
-Bisher im Projekt genutzt fuer:
+Used in this project for:
 
-- Installation von `frontend-design` aus `anthropics/skills`
+- installing `frontend-design` from `anthropics/skills`
 
-## Hinweise
+## Notes
 
-- Nach der Installation neuer Skills ist ein Neustart von Codex noetig, damit
-  sie in der Session verfuegbar sind.
-- Diese Liste kann spaeter um weitere projektbezogene Skills erweitert werden.
+- After installing new skills, Codex should be restarted so they become available in the session.
+- This file is the index. Detailed skill notes can live under `docs/skills/`.

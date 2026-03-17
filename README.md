@@ -1,8 +1,8 @@
 # AI Photo Trip Planner
 
-Die ausfuehrliche Projektdokumentation liegt jetzt im Ordner `docs`.
+The full project documentation now lives in the `docs` folder.
 
-Wichtige Einstiege:
+Key entry points:
 
-- [Projektdokumentation](docs/README.md)
-- [Skill-Dokumentation](docs/skills.md)
+- [Project documentation](docs/README.md)
+- [Skills documentation](docs/skills.md)

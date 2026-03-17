@@ -1,69 +1,69 @@
 # AI Photo Trip Planner
 
-AI Photo Trip Planner ist ein lokales MVP fuer personalisierte Fototrips.
-Die App kombiniert kostenlose OpenStreetMap-Datenquellen mit einem lokalen
-LLM ueber Ollama, um aus wenigen Nutzereingaben einen fotografisch sinnvollen
-Tagesplan zu erzeugen.
+AI Photo Trip Planner is a local MVP for personalized photography day trips.
+It combines free OpenStreetMap-based data sources with a local LLM via Ollama
+to turn a few user inputs into a practical, photography-focused itinerary.
 
-## Dokumentationspflege
+## Documentation Maintenance
 
-Die Dokumentation im Ordner `docs` soll bei projektrelevanten Aenderungen immer
-mitgezogen werden.
+Documentation inside `docs` should be updated whenever project-relevant changes
+are introduced.
 
-Pflicht zur Aktualisierung besteht insbesondere bei:
+Updates are required especially for:
 
-- neuen installierten oder verwendeten Skills
-- Architektur-Aenderungen im Frontend oder Backend
-- neuen oder ausgetauschten Technologien
-- neuen externen APIs, Services oder Laufzeitabhaengigkeiten
-- groesseren Aenderungen an Setup, Projektstruktur oder Entwicklungsworkflow
+- newly installed or newly used skills
+- frontend or backend architecture changes
+- new or replaced technologies
+- new external APIs, services, or runtime dependencies
+- significant setup, project-structure, or workflow changes
 
-Dabei gilt:
+Rules:
 
-- Skill-bezogene Aenderungen kommen in `docs/skills.md`
-- Architektur-, Technologie- und Projektstruktur-Aenderungen kommen in diese Datei
+- skill-related updates go into `docs/skills.md` and detailed skill pages under
+  `docs/skills/`
+- architecture, technology, and project-structure changes go into this file
 
-## Projektziel
+## Project Goal
 
-Ein Nutzer gibt wenige Informationen an:
+The user provides a small set of inputs:
 
-- Stadt oder Region
-- Dauer des Trips
-- Fotostile
-- Reisestil
-- Startzeit
-- Verkehrsmittel
-- Budget
-- bevorzugte Bildstimmung
+- city or region
+- trip duration
+- photography styles
+- travel pace
+- start time
+- transport mode
+- budget
+- preferred visual mood
 
-Die App erstellt daraus:
+The app generates:
 
-- 3 bis 5 passende Fotospots
-- empfohlene Reihenfolge
-- beste Uhrzeit pro Spot
-- Begruendung pro Spot
-- 1 bis 2 Fotoideen pro Spot
-- visuelle Darstellung auf einer Karte
+- 3 to 5 relevant photo spots
+- recommended order
+- best time per spot
+- a short reason for each stop
+- 1 to 2 photo ideas per stop
+- a simple map-based route view
 
-## MVP-Umfang
+## MVP Scope
 
-Der Fokus des MVP liegt auf einem eintagesfaehigen City-Fototrip.
+The current MVP focuses on a one-day city photo trip.
 
-Im MVP enthalten:
+Included:
 
-- eine einfache React-UI fuer Eingabe und Ausgabe
-- lokale Reiseplanung ohne externe Bezahl-APIs
-- Kartenansicht mit Spot-Marker und Reihenfolge
-- lokale KI-Ausgabe ueber Ollama
-- robuster Fallback ohne KI, falls Ollama nicht erreichbar ist
+- a lightweight React UI for input and output
+- local planning without paid APIs
+- map view with markers and route order
+- local AI output via Ollama
+- a robust fallback when Ollama is unavailable
 
-Nicht im ersten MVP:
+Not included yet:
 
-- Benutzerkonten
-- persistente Speicherung
-- echte Strassennavigation Turn-by-Turn
-- Live-Crowd-Level
-- verifizierte Eintrittspreise und Oeffnungszeiten
+- user accounts
+- persistent storage
+- full turn-by-turn road navigation
+- live crowd-level data
+- verified entry fees and opening hours
 
 ## Tech Stack
 
@@ -80,144 +80,139 @@ Nicht im ersten MVP:
 - Node.js
 - Express
 - TypeScript
-- native `fetch` aus Node 22
+- native `fetch` from Node 22
 
-### Lokale KI
+### Local AI
 
-- Ollama als lokaler LLM-Server
-- Standardmodell im Projekt: `llama3.1:8b`
+- Ollama as the local LLM server
+- default model: `llama3.1:8b`
 
-Das Modell ist in der App konfigurierbar. Fuer den ersten Start ist ein
-mittelgrosses Modell sinnvoll, das auch auf Consumer-Hardware noch realistisch
-laeuft.
+The model is configurable. For the current MVP, a mid-sized model is a good
+starting point for consumer hardware.
 
-## Verwendete kostenlose APIs
+## Free APIs Used
 
 ### 1. Nominatim
 
-Zweck:
+Purpose:
 
-- Geocoding fuer Stadt oder Region
+- geocoding for city or region lookup
 
-Nutzung im Projekt:
+Used for:
 
-- Umwandlung eines Ortsnamens in Latitude und Longitude
-- Ermittlung eines sinnvollen Kartenzentrums
+- turning a location name into latitude and longitude
+- deriving a useful map center for planning
 
-Hinweis:
+Notes:
 
-- oeffentliche Nutzung ist limitiert
-- keine aggressive Autocomplete-Nutzung
-- fuer Produktionslast spaeter eigener Proxy oder anderer Dienst sinnvoll
+- public usage is limited
+- not intended for aggressive autocomplete traffic
+- for larger production traffic, a proxy or alternative service would be needed
 
 ### 2. Overpass API
 
-Zweck:
+Purpose:
 
-- Suche nach OpenStreetMap-Objekten wie Aussichtspunkten, Cafes, Parks,
-  Promenaden, Bruecken, Architekturpunkten und anderen moeglichen Fotospots
+- querying OpenStreetMap objects such as viewpoints, cafes, parks, promenades,
+  bridges, architecture points, and other possible photo spots
 
-Nutzung im Projekt:
+Used for:
 
-- Abruf von Kandidaten-Spots im Umkreis der Zielstadt
-- Filterung nach Fotostilen wie Street, Architecture, Nature, Sunset,
+- retrieving spot candidates around the requested city
+- filtering by photo styles such as Street, Architecture, Nature, Sunset, and
   Hidden Gems
 
 ### 3. Sunrise-Sunset API
 
-Zweck:
+Purpose:
 
-- Ermittlung von Sonnenaufgang und Sonnenuntergang
+- retrieving sunrise and sunset times
 
-Nutzung im Projekt:
+Used for:
 
-- Ableitung von `goldener Stunde`, spaeterem Nachmittagslicht oder fruehen
-  ruhigen Zeitfenstern
+- deriving golden-hour timing, softer afternoon light, and quieter early-day
+  windows
 
-## Warum kein externer kostenpflichtiger AI-Dienst
+## Why There Is No Paid Cloud AI Service
 
-Das Projekt soll nur kostenlose APIs nutzen.
-Deshalb wird kein kostenpflichtiger Cloud-LLM-Dienst wie OpenAI verwendet.
-Die Textgenerierung laeuft lokal ueber Ollama.
+This project is intentionally designed around free APIs.
+Because of that, it does not use a paid cloud LLM provider such as OpenAI.
+Text generation runs locally through Ollama.
 
-Vorteile:
+Advantages:
 
-- keine API-Kosten
-- mehr Kontrolle ueber Daten
-- Entwicklung auch ohne Cloudanbieter moeglich
+- no API usage costs
+- more control over user data
+- local development without a cloud dependency
 
-Nachteile:
+Tradeoffs:
 
-- lokale Installation notwendig
-- Antwortqualitaet haengt vom verwendeten Modell und der Hardware ab
+- local installation is required
+- output quality depends on the selected model and hardware
 
-## Architektur
+## Architecture
 
-### High-Level-Flow
+### High-Level Flow
 
-1. Nutzer fuellt das Formular im Frontend aus.
-2. Frontend sendet die Anfrage an das lokale Backend.
-3. Backend geocodiert den Ort ueber Nominatim.
-4. Backend sammelt Spot-Kandidaten ueber Overpass.
-5. Backend bewertet und filtert die Spots anhand der gewaehlten Fotostile.
-6. Backend ordnet die Spots mit einer einfachen Distanz-Heuristik.
-7. Backend berechnet geeignete Zeitfenster auf Basis von Startzeit, Dauer und
-   Sonnenzeiten.
-8. Backend gibt Spotdaten an Ollama weiter.
-9. Ollama liefert kreative Texte und Shot-Ideen als JSON.
-10. Falls Ollama nicht erreichbar ist, erzeugt das Backend einen regelbasierten
-    Fallback-Plan.
-11. Frontend zeigt Route, Karte und Spot-Karten an.
+1. The user submits the form in the frontend.
+2. The frontend sends the request to the local backend.
+3. The backend geocodes the place via Nominatim.
+4. The backend collects spot candidates via Overpass.
+5. The backend filters and scores spots based on the selected photography styles.
+6. The backend orders the spots with a simple distance heuristic.
+7. The backend assigns time windows based on start time, duration, and sun times.
+8. The backend sends structured spot context to Ollama.
+9. Ollama returns concise descriptions and shot ideas as JSON.
+10. If Ollama fails or is unavailable, the backend generates a rule-based fallback plan.
+11. The frontend renders the route, map, and spot cards.
 
-### Warum eine Distanz-Heuristik statt echter Routing-API
+### Why the MVP Uses a Distance Heuristic Instead of Full Routing
 
-Fuer das MVP wollen wir ohne API-Key und ohne Bezahlmodell auskommen.
-Deshalb sortiert das Backend die Spots zunaechst mit einer einfachen
-Nearest-Neighbor-Logik.
+The current MVP avoids API keys and paid routing services.
+Because of that, the backend uses a nearest-neighbor style ordering heuristic.
 
-Das Ergebnis ist fuer einen ersten City-Trip ausreichend:
+For an early city-trip MVP, this is good enough to provide:
 
-- sinnvolle Reihenfolge
-- kurze Wege zwischen benachbarten Spots
-- keine Abhaengigkeit von externer Turn-by-Turn-Navigation
+- a sensible route order
+- shorter jumps between neighboring spots
+- no dependency on a full road-routing provider
 
-Spaeter kann diese Stelle gegen einen echten kostenlosen oder selbst gehosteten
-Routing-Dienst ausgetauscht werden.
+Later, this can be replaced with a free or self-hosted routing layer if needed.
 
-## Kernfunktionen
+## Core Features
 
-### Eingaben
+### Inputs
 
-- Stadt oder Region
-- Dauer: halber Tag oder ganzer Tag
-- Fotostile:
+- city or region
+- duration: half day or full day
+- photography styles:
   - Street
   - Nature
   - Architecture
   - Sunset
   - Hidden Gems
-- Reisestil:
-  - entspannt
-  - ausgewogen
-  - viele Spots
-- Startzeit
-- Verkehrsmittel
-- Budget
-- Stimmung oder fotografischer Vibe
+- travel pace:
+  - relaxed
+  - balanced
+  - packed
+- start time
+- transport mode
+- budget
+- visual mood or vibe
 
-### Ausgabe
+### Output
 
-- Plan-Titel
-- kurze Gesamtzusammenfassung
-- 3 bis 5 empfohlene Spots
-- Spot-Beschreibung
-- beste Uhrzeit
-- Grund, warum der Spot passt
-- 1 bis 2 Fotoideen
-- empfohlene Reihenfolge
-- einfache Kartenvisualisierung
+- plan title
+- short overall summary
+- 3 to 5 recommended spots
+- spot description
+- best time
+- reason the spot fits
+- 1 to 2 photo ideas
+- recommended order
+- simple route visualization
 
-## Datenmodell
+## Data Model
 
 ### Input
 
@@ -247,54 +242,56 @@ type TripPlan = {
 };
 ```
 
-## Lokale Ollama-Integration
+## Local Ollama Integration
 
-Die App erwartet standardmaessig einen lokalen Ollama-Server unter:
+The app expects a local Ollama server at:
 
 `http://127.0.0.1:11434`
 
-Verwendete API:
+API used:
 
 - `POST /api/generate`
 
-Erwartung:
+Expected behavior:
 
-- strukturierte JSON-Antwort mit Beschreibungen, Begruendungen und Fotoideen
+- structured JSON with descriptions, reasons, and photo ideas
 
-Empfohlener Start:
+Recommended setup:
 
-1. Ollama installieren
-2. Modell laden, zum Beispiel `llama3.1:8b`
-3. lokalen Server verfuegbar machen
-4. App starten
+1. install Ollama
+2. pull a model such as `llama3.1:8b`
+3. start the local Ollama server
+4. run the app
 
-Beispiel:
+Example:
 
 ```bash
 ollama pull llama3.1:8b
 ollama serve
 ```
 
-## Fallback-Strategie
+## Fallback Strategy
 
-Wenn Ollama nicht laeuft oder fehlerhaft antwortet, bleibt das Produkt nutzbar.
+If Ollama is unavailable or returns invalid output, the app remains usable.
 
-Fallback-Verhalten:
+Fallback behavior:
 
-- Spot-Auswahl bleibt aktiv
-- Reihenfolge bleibt aktiv
-- Zeitfenster bleiben aktiv
-- Beschreibung und Fotoideen werden aus Templates erzeugt
+- spot selection still runs
+- ordering still runs
+- time windows still run
+- descriptions and photo ideas are generated from templates
 
-So ist die Anwendung auch ohne laufendes LLM testbar.
+This makes the MVP testable even without a running local LLM.
 
-## Projektstruktur
+## Project Structure
 
 ```text
 .
 ├── README.md
 ├── docs
 │   ├── README.md
+│   ├── skills
+│   │   └── frontend-design.md
 │   └── skills.md
 ├── package.json
 ├── tsconfig.json
@@ -325,46 +322,44 @@ So ist die Anwendung auch ohne laufendes LLM testbar.
         └── TripMap.tsx
 ```
 
-## Entwicklungsstrategie
+## Development Roadmap
 
 ### Phase 1
 
-- Projektgeruest
-- Formular
-- Backend-Endpunkt
-- freie Datenquellen anbinden
-- fallbackfaehige Planung
+- project scaffold
+- input form
+- backend planning endpoint
+- connect free external data sources
+- fallback-capable planning
 
 ### Phase 2
 
-- bessere Ranking-Heuristiken
-- bessere Kartenvisualisierung
-- echte Routing-Integration
-- Zwischenspeicherung von Suchergebnissen
+- better ranking heuristics
+- stronger map presentation
+- real routing integration
+- caching for search results
 
 ### Phase 3
 
-- Save and share
-- mehrere Tagesplaene
-- Bild-Upload fuer Referenzstimmung
-- Favoriten und Export
+- save and share flows
+- multi-day plans
+- image-based mood input
+- favorites and export
 
-## Wichtige Hinweise
+## Important Notes
 
-- Oeffentliche OSM-Dienste sind fuer moderate Nutzung gedacht, nicht fuer hohe
-  Produktionslast.
-- Spotdaten aus OpenStreetMap sind community-basiert und koennen unvollstaendig
-  sein.
-- Lost Places sollten nicht aktiv als illegal zugangliche Orte beworben werden.
-- Tageszeiten fuer wenig Menschen sind nur Heuristiken und keine Garantie.
+- Public OSM services are meant for moderate use, not high production traffic.
+- OpenStreetMap spot data is community-maintained and may be incomplete.
+- Lost places should not be promoted as illegal-access destinations.
+- Low-crowd timing is always heuristic, not guaranteed.
 
-## Lokales Setup
+## Local Setup
 
-### Voraussetzungen
+### Requirements
 
 - Node.js 22+
 - npm 10+
-- Ollama lokal installiert, wenn KI-Antworten aktiv sein sollen
+- Ollama installed locally if AI responses should be enabled
 
 ### Start
 
@@ -375,14 +370,14 @@ npm run dev
 
 ### Environment
 
-Siehe `.env.example`.
+See `.env.example`.
 
-## Weiterentwicklung
+## Next Steps
 
-Sinnvolle naechste Schritte:
+Likely next improvements:
 
-- bessere Prompt-Optimierung fuer unterschiedliche Fotostile
-- differenziertere Spotkategorien
-- Caching fuer Nominatim und Overpass
-- Filter fuer kostenlose versus kostenpflichtige Locations
-- Wetterintegration fuer noch bessere Licht- und Stimmungsplanung
+- better prompt tuning for different photography styles
+- more nuanced spot categories
+- caching for Nominatim and Overpass
+- filtering for free versus paid locations
+- weather-aware planning for stronger light and atmosphere suggestions
