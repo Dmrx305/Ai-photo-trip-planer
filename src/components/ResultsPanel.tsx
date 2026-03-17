@@ -12,9 +12,14 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
       <section className="panel results-panel placeholder-panel">
         <p className="eyebrow">Planning</p>
         <h2>Der Plan wird zusammengesetzt</h2>
-        <p className="muted">
-          Es werden Orte gesucht, geordnet und mit Fotoideen angereichert.
-        </p>
+        <div className="placeholder-stack">
+          <p className="muted">
+            Es werden Orte gesucht, geordnet und mit Fotoideen angereichert.
+          </p>
+          <div className="placeholder-card" />
+          <div className="placeholder-card" />
+          <div className="placeholder-card" />
+        </div>
       </section>
     );
   }
@@ -34,9 +39,25 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
       <section className="panel results-panel placeholder-panel">
         <p className="eyebrow">Output</p>
         <h2>Hier erscheint dein Fotoplan</h2>
-        <p className="muted">
-          Du bekommst eine kurze Tagesstruktur, passende Spots und Shot-Ideen.
-        </p>
+        <div className="placeholder-stack">
+          <p className="muted">
+            Du bekommst eine kurze Tagesstruktur, passende Spots und Shot-Ideen.
+          </p>
+          <div className="preview-list">
+            <div className="preview-item">
+              <strong>Stop 1</strong>
+              <span>ruhiger Einstieg mit Licht und Stimmung</span>
+            </div>
+            <div className="preview-item">
+              <strong>Stop 2</strong>
+              <span>urbaner Mittelteil mit Bewegung und Details</span>
+            </div>
+            <div className="preview-item">
+              <strong>Stop 3</strong>
+              <span>spaeteres Licht fuer Abschluss oder Sunset</span>
+            </div>
+          </div>
+        </div>
       </section>
     );
   }
@@ -52,6 +73,21 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
           </span>
         </div>
         <p className="muted">{plan.summary}</p>
+      </div>
+
+      <div className="results-metrics">
+        <div className="result-metric">
+          <span>Spots</span>
+          <strong>{plan.spots.length}</strong>
+        </div>
+        <div className="result-metric">
+          <span>Engine</span>
+          <strong>{plan.generatedWith === "ollama" ? "Ollama" : "Fallback"}</strong>
+        </div>
+        <div className="result-metric">
+          <span>Route</span>
+          <strong>In Reihenfolge</strong>
+        </div>
       </div>
 
       {plan.notes.length > 0 ? (
@@ -78,7 +114,7 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
             <p className="spot-meta">
               Beste Zeit: {spot.bestTime} · Typ: {spot.type}
             </p>
-            <p>{spot.description}</p>
+            <p className="spot-description">{spot.description}</p>
             <p className="muted">{spot.reason}</p>
 
             <div className="idea-block">

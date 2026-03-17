@@ -44,116 +44,160 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
         </p>
       </div>
 
-      <label className="field">
-        <span>Stadt oder Region</span>
-        <input
-          type="text"
-          value={value.city}
-          onChange={(event) => updateField("city", event.target.value)}
-          placeholder="z. B. Kopenhagen"
-          required
-        />
-      </label>
-
-      <div className="field-grid">
-        <label className="field">
-          <span>Dauer</span>
-          <select
-            value={value.duration}
-            onChange={(event) => updateField("duration", event.target.value as TripRequest["duration"])}
-          >
-            {durationOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="field">
-          <span>Reisestil</span>
-          <select
-            value={value.pace}
-            onChange={(event) => updateField("pace", event.target.value as TripRequest["pace"])}
-          >
-            {paceOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
+      <div className="form-callout">
+        <strong>Fokus fuer das MVP:</strong> ein klarer, visuell sinnvoller
+        Tagesplan statt maximal viele Optionen.
       </div>
 
-      <div className="field-grid">
+      <section className="form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Ort</p>
+          <h3>Wohin geht der Trip?</h3>
+        </div>
+
         <label className="field">
-          <span>Startzeit</span>
+          <span>Stadt oder Region</span>
           <input
-            type="time"
-            value={value.startTime}
-            onChange={(event) => updateField("startTime", event.target.value)}
+            type="text"
+            value={value.city}
+            onChange={(event) => updateField("city", event.target.value)}
+            placeholder="z. B. Kopenhagen"
+            required
+          />
+          <small className="field-hint">
+            Die Suche startet ueber OpenStreetMap-Daten fuer diese Region.
+          </small>
+        </label>
+      </section>
+
+      <section className="form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Rhythmus</p>
+          <h3>Wie soll sich der Tag anfuehlen?</h3>
+        </div>
+
+        <div className="field-grid">
+          <label className="field">
+            <span>Dauer</span>
+            <select
+              value={value.duration}
+              onChange={(event) => updateField("duration", event.target.value as TripRequest["duration"])}
+            >
+              {durationOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="field">
+            <span>Reisestil</span>
+            <select
+              value={value.pace}
+              onChange={(event) => updateField("pace", event.target.value as TripRequest["pace"])}
+            >
+              {paceOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="field-grid">
+          <label className="field">
+            <span>Startzeit</span>
+            <input
+              type="time"
+              value={value.startTime}
+              onChange={(event) => updateField("startTime", event.target.value)}
+            />
+          </label>
+
+          <label className="field">
+            <span>Verkehrsmittel</span>
+            <select
+              value={value.transport}
+              onChange={(event) => updateField("transport", event.target.value as TripRequest["transport"])}
+            >
+              {transportOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section className="form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Bildwelt</p>
+          <h3>Welche Motive sollen priorisiert werden?</h3>
+        </div>
+
+        <div className="field">
+          <span>Fotostile</span>
+          <div className="chip-grid">
+            {styleOptions.map((option) => {
+              const isActive = value.styles.includes(option.value);
+              return (
+                <button
+                  key={option.value}
+                  className={`chip ${isActive ? "chip-active" : ""}`}
+                  type="button"
+                  onClick={() => updateField("styles", toggleStyle(value.styles, option.value))}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+          <small className="field-hint">
+            Mehrere Stile helfen der Planung bei der Spot-Auswahl und Tagesdramaturgie.
+          </small>
+        </div>
+
+        <label className="field">
+          <span>Bildstimmung oder Vibe</span>
+          <input
+            type="text"
+            value={value.vibe}
+            onChange={(event) => updateField("vibe", event.target.value)}
+            placeholder="moody, ruhig, cineastisch, urban..."
           />
         </label>
+      </section>
+
+      <section className="form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Optional</p>
+          <h3>Rahmenbedingungen</h3>
+        </div>
 
         <label className="field">
-          <span>Verkehrsmittel</span>
-          <select
-            value={value.transport}
-            onChange={(event) => updateField("transport", event.target.value as TripRequest["transport"])}
-          >
-            {transportOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <span>Budget in EUR</span>
+          <input
+            type="number"
+            min="0"
+            step="1"
+            value={value.budget ?? ""}
+            onChange={handleBudgetChange}
+            placeholder="optional"
+          />
         </label>
+      </section>
+
+      <div className="submit-block">
+        <button className="primary-button" type="submit" disabled={isLoading || value.styles.length === 0}>
+          {isLoading ? "Trip wird erstellt..." : "Fototrip generieren"}
+        </button>
+        <p className="submit-note">
+          Der Plan verbindet echte Spots, sinnvolle Reihenfolge und fotografische Ideen.
+        </p>
       </div>
-
-      <label className="field">
-        <span>Budget in EUR</span>
-        <input
-          type="number"
-          min="0"
-          step="1"
-          value={value.budget ?? ""}
-          onChange={handleBudgetChange}
-          placeholder="optional"
-        />
-      </label>
-
-      <label className="field">
-        <span>Bildstimmung oder Vibe</span>
-        <input
-          type="text"
-          value={value.vibe}
-          onChange={(event) => updateField("vibe", event.target.value)}
-          placeholder="moody, ruhig, cineastisch, urban..."
-        />
-      </label>
-
-      <div className="field">
-        <span>Fotostile</span>
-        <div className="chip-grid">
-          {styleOptions.map((option) => {
-            const isActive = value.styles.includes(option.value);
-            return (
-              <button
-                key={option.value}
-                className={`chip ${isActive ? "chip-active" : ""}`}
-                type="button"
-                onClick={() => updateField("styles", toggleStyle(value.styles, option.value))}
-              >
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <button className="primary-button" type="submit" disabled={isLoading || value.styles.length === 0}>
-        {isLoading ? "Trip wird erstellt..." : "Fototrip generieren"}
-      </button>
     </form>
   );
 }

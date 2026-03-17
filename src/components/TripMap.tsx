@@ -37,6 +37,12 @@ export function TripMap({ plan }: TripMapProps) {
       <div className="panel-header">
         <p className="eyebrow">Map</p>
         <h2>Route und Spots</h2>
+        <div className="map-meta-row">
+          <span className="map-meta-pill">{plan.spots.length} Stops</span>
+          <span className="map-meta-pill">
+            {plan.generatedWith === "ollama" ? "Mit Ollama angereichert" : "Fallback aktiv"}
+          </span>
+        </div>
       </div>
       <div className="map-frame">
         <MapContainer center={center} zoom={13} scrollWheelZoom className="leaflet-map">
