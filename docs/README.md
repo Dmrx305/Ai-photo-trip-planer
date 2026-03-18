@@ -12,6 +12,9 @@ to turn a few user inputs into a practical, photography-focused itinerary.
 - `docs/setup.md` -> local development setup and environment
 - `docs/data-sources.md` -> external APIs, limits, and fallback assumptions
 - `docs/roadmap.md` -> MVP and planned next phases
+- `docs/agents/frontend-agent.md` -> frontend role definition
+- `docs/agents/backend-agent.md` -> backend role definition
+- `docs/agents/documentation-agent.md` -> documentation role definition
 - `docs/skills.md` -> skill index used in this project
 - `docs/skills/frontend-design.md` -> dedicated notes for the frontend-design skill
 - `CHANGELOG.md` -> notable project changes and releases
