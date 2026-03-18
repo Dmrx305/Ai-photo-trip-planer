@@ -4,6 +4,18 @@ AI Photo Trip Planner is a local MVP for personalized photography day trips.
 It combines free OpenStreetMap-based data sources with a local LLM via Ollama
 to turn a few user inputs into a practical, photography-focused itinerary.
 
+## Documentation Index
+
+- `docs/README.md` -> project overview, scope, stack, and documentation rules
+- `docs/architecture.md` -> system structure and request flow
+- `docs/api.md` -> backend endpoints and request/response contracts
+- `docs/setup.md` -> local development setup and environment
+- `docs/data-sources.md` -> external APIs, limits, and fallback assumptions
+- `docs/roadmap.md` -> MVP and planned next phases
+- `docs/skills.md` -> skill index used in this project
+- `docs/skills/frontend-design.md` -> dedicated notes for the frontend-design skill
+- `CHANGELOG.md` -> notable project changes and releases
+
 ## Documentation Maintenance
 
 Documentation inside `docs` should be updated whenever project-relevant changes
