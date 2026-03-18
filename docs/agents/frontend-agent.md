@@ -20,6 +20,24 @@ component structure.
 - loading, error, and empty states
 - accessibility basics
 
+## Skills
+
+Use the `frontend-design` skill whenever the task involves:
+
+- UI redesign
+- layout improvements
+- visual hierarchy
+- styling changes
+- interaction polish
+- improving the overall look and feel of the product
+
+The skill should be treated as the default choice for visual or UX-focused
+frontend work in this project.
+
+Reference:
+
+- `docs/skills/frontend-design.md`
+
 ## Constraints
 
 - do not change backend logic unless absolutely necessary
