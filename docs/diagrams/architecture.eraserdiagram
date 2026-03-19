@@ -1,0 +1,61 @@
+cloud-architecture-diagram
+direction right
+colorMode pastel
+styleMode shadow
+typeface clean
+
+User [icon: user, color: blue]
+
+Frontend [label: "React Frontend client/", icon: react, color: orange] {
+  App [icon: react]
+  TripForm [icon: form]
+  ResultsPanel [icon: list]
+  TripMap [icon: map]
+}
+
+Backend [label: "Express Backend server/", icon: nodejs, color: green] {
+  ApiServer [label: "/api/plan-trip server/index.ts", icon: api]
+  Planner [label: "Planner Pipeline server/planner.ts", icon: flow-chart]
+  Scoring [label: "Scoring + Ordering server/scoring.ts", icon: sliders]
+  TimeWindows [label: "Time Windows server/time.ts", icon: clock]
+  Fallback [label: "Fallback Generator server/fallback.ts", icon: sparkles]
+}
+
+Services [label: "Service Integrations server/services/", icon: toolbox, color: teal] {
+  GeocodingService [label: "geocoding.ts", icon: search]
+  OverpassService [label: "overpass.ts", icon: map-pin]
+  SunService [label: "sun.ts", icon: sun]
+  OllamaService [label: "ollama.ts", icon: cpu]
+}
+
+ExternalSources [label: "External / Local Sources", icon: globe, color: purple] {
+  Nominatim [icon: map]
+  OverpassAPI [label: "Overpass API", icon: database]
+  SunriseSunset [label: "Sunrise-Sunset API", icon: sun]
+  OllamaLocal [label: "Local Ollama Server", icon: server]
+}
+
+User > Frontend: Enter trip preferences
+Frontend > ApiServer: POST /api/plan-trip
+ApiServer > Planner: Validate and start planning
+Planner > GeocodingService: Resolve city
+Planner > OverpassService: Fetch spot candidates
+Planner > SunService: Fetch sunrise/sunset
+Planner > Scoring: Select and order spots
+Planner > TimeWindows: Assign time windows
+Planner > OllamaService: Enrich plan with AI
+Planner > Fallback: Use fallback if needed
+GeocodingService > Nominatim: Geocoding lookup
+OverpassService > OverpassAPI: OSM query
+SunService > SunriseSunset: Sun times
+OllamaService > OllamaLocal: POST /api/generate
+Planner > ApiServer: Return TripPlan JSON
+ApiServer > Frontend: TripPlan response
+Frontend > User: Render route, spots, and map
+
+legend [position: bottom-left] {
+  [color: orange, label: Frontend]
+  [color: green, label: Backend]
+  [color: teal, label: Service layer]
+  [color: purple, label: External or local integrations]
+}

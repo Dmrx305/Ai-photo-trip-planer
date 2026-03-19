@@ -1,0 +1,40 @@
+flow-chart
+direction down
+colorMode pastel
+styleMode shadow
+typeface clean
+
+Start [shape: oval, color: blue]
+SubmitForm [label: "User submits trip form", color: blue]
+ValidateRequest [label: "Validate request with zod", color: green]
+GeocodePlace [label: "Geocode city or region via Nominatim", color: green]
+FetchCandidates [label: "Fetch spot candidates via Overpass", color: teal]
+FetchSunTimes [label: "Fetch sunrise and sunset", color: teal]
+EnoughSpots [label: "At least 3 suitable spots?", shape: diamond, color: orange]
+ScoreSpots [label: "Score spots by style and distance", color: green]
+OrderSpots [label: "Order spots with distance heuristic", color: green]
+AssignWindows [label: "Assign time windows", color: green]
+TryOllama [label: "Try Ollama enrichment", color: purple]
+OllamaSuccess [label: "Valid Ollama JSON?", shape: diamond, color: orange]
+MergePlan [label: "Merge AI output with ordered spots", color: purple]
+BuildFallback [label: "Build fallback plan", color: red]
+ReturnPlan [label: "Return TripPlan JSON", color: blue]
+RenderFrontend [label: "Frontend renders spots and map", color: blue]
+ErrorResponse [label: "Return error response", color: red]
+End [shape: oval, color: blue]
+
+Start > SubmitForm > ValidateRequest > GeocodePlace
+GeocodePlace > FetchCandidates
+GeocodePlace > FetchSunTimes
+FetchCandidates > EnoughSpots
+FetchSunTimes > EnoughSpots
+EnoughSpots > ScoreSpots: Yes
+EnoughSpots > ErrorResponse: No
+ScoreSpots > OrderSpots > AssignWindows > TryOllama
+TryOllama > OllamaSuccess
+OllamaSuccess > MergePlan: Yes
+OllamaSuccess > BuildFallback: No
+MergePlan > ReturnPlan
+BuildFallback > ReturnPlan
+ReturnPlan > RenderFrontend > End
+ErrorResponse > End

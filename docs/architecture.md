@@ -13,7 +13,7 @@ assignment, and optional enrichment through Ollama.
 
 Location:
 
-- `src/`
+- `client/`
 
 Responsibilities:
 
@@ -24,10 +24,17 @@ Responsibilities:
 
 Main files:
 
-- `src/App.tsx`
-- `src/components/TripForm.tsx`
-- `src/components/ResultsPanel.tsx`
-- `src/components/TripMap.tsx`
+- `client/App.tsx`
+- `client/components/TripForm.tsx`
+- `client/components/ResultsPanel.tsx`
+- `client/components/TripMap.tsx`
+
+## Diagrams
+
+The project now includes Eraser diagram-as-code files for the current MVP:
+
+- `docs/diagrams/architecture.eraserdiagram`
+- `docs/diagrams/planner-flow.eraserdiagram`
 
 ### Backend
 

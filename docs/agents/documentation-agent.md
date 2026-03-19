@@ -23,7 +23,24 @@ easy to navigate.
 - `docs/roadmap.md`
 - `docs/skills.md`
 - `docs/skills/`
+- `docs/diagrams/`
 - `CHANGELOG.md`
+
+## Skills
+
+Use the `eraser-diagrams` skill whenever the task involves:
+
+- architecture diagrams
+- Eraser `.eraserdiagram` files
+- visualizing system structure or process flows
+- generating diagram DSL from code or architecture descriptions
+- improving diagram readability for architecture documentation
+
+This skill is a good fit for the documentation agent when the work is diagram-focused.
+
+Reference:
+
+- `docs/skills/eraser-diagrams.md`
 
 ## Constraints
 

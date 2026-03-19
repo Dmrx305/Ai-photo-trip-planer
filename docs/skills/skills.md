@@ -41,6 +41,18 @@ Documentation:
 
 - [ui-ux-pro-max skill notes](ui-ux-pro-max.md)
 
+### `eraser-diagrams`
+
+Status:
+
+- installed
+- relevant to this project
+- assigned to the documentation agent for diagram work
+
+Documentation:
+
+- [eraser-diagrams skill notes](eraser-diagrams.md)
+
 ### `skill-installer`
 
 Status:

@@ -12,6 +12,8 @@ to turn a few user inputs into a practical, photography-focused itinerary.
 - `docs/setup.md` -> local development setup and environment
 - `docs/data-sources.md` -> external APIs, limits, and fallback assumptions
 - `docs/roadmap.md` -> MVP and planned next phases
+- `docs/diagrams/architecture.eraserdiagram` -> Eraser cloud architecture diagram
+- `docs/diagrams/planner-flow.eraserdiagram` -> Eraser flow chart for trip generation
 - `docs/agents/frontend-agent.md` -> frontend role definition
 - `docs/agents/backend-agent.md` -> backend role definition
 - `docs/agents/documentation-agent.md` -> documentation role definition
