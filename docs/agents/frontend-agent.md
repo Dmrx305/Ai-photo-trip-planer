@@ -38,6 +38,22 @@ Reference:
 
 - `docs/skills/frontend-design.md`
 
+Use the `ui-ux-pro-max` skill whenever the task involves:
+
+- broader UI/UX quality review
+- accessibility and interaction quality
+- design systems
+- typography and color system decisions
+- motion, spacing, or layout standards
+- stronger product-level UI direction
+
+This skill is especially useful when a task needs deeper UI/UX reasoning beyond
+basic visual redesign.
+
+Reference:
+
+- `docs/skills/ui-ux-pro-max.md`
+
 ## Constraints
 
 - do not change backend logic unless absolutely necessary

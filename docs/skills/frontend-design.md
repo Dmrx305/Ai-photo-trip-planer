@@ -16,11 +16,11 @@ and intentionally designed.
 
 ## Areas Affected
 
-- `src/App.tsx`
-- `src/components/TripForm.tsx`
-- `src/components/ResultsPanel.tsx`
-- `src/components/TripMap.tsx`
-- `src/index.css`
+- `client/App.tsx`
+- `client/components/TripForm.tsx`
+- `client/components/ResultsPanel.tsx`
+- `client/components/TripMap.tsx`
+- `client/index.css`
 
 ## Main Outcomes
 

@@ -29,6 +29,18 @@ Documentation:
 
 - [frontend-design skill notes](skills/frontend-design.md)
 
+### `ui-ux-pro-max`
+
+Status:
+
+- installed
+- available for this project
+- assigned to the frontend agent
+
+Documentation:
+
+- [ui-ux-pro-max skill notes](ui-ux-pro-max.md)
+
 ### `skill-installer`
 
 Status:
