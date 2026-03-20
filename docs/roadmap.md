@@ -64,5 +64,5 @@ As the roadmap changes, the docs should be kept in sync, especially:
 - `docs/README.md`
 - `docs/architecture.md`
 - `docs/api.md`
-- `docs/skills.md`
+- `docs/skills/skills.md`
 - `CHANGELOG.md`

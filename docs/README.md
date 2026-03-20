@@ -14,11 +14,16 @@ to turn a few user inputs into a practical, photography-focused itinerary.
 - `docs/roadmap.md` -> MVP and planned next phases
 - `docs/diagrams/architecture.eraserdiagram` -> Eraser cloud architecture diagram
 - `docs/diagrams/planner-flow.eraserdiagram` -> Eraser flow chart for trip generation
+- `docs/diagrams/architecture.excalidraw` -> Excalidraw architecture diagram
+- `docs/diagrams/planner-flow.excalidraw` -> Excalidraw trip planning flow diagram
 - `docs/agents/frontend-agent.md` -> frontend role definition
 - `docs/agents/backend-agent.md` -> backend role definition
 - `docs/agents/documentation-agent.md` -> documentation role definition
-- `docs/skills.md` -> skill index used in this project
+- `docs/skills/skills.md` -> skill index used in this project
 - `docs/skills/frontend-design.md` -> dedicated notes for the frontend-design skill
+- `docs/skills/ui-ux-pro-max.md` -> dedicated notes for the ui-ux-pro-max skill
+- `docs/skills/eraser-diagrams.md` -> dedicated notes for the Eraser diagram skill
+- `docs/skills/excalidraw-diagram.md` -> dedicated notes for the Excalidraw diagram skill
 - `CHANGELOG.md` -> notable project changes and releases
 
 ## Documentation Maintenance
@@ -36,7 +41,7 @@ Updates are required especially for:
 
 Rules:
 
-- skill-related updates go into `docs/skills.md` and detailed skill pages under
+- skill-related updates go into `docs/skills/skills.md` and detailed skill pages under
   `docs/skills/`
 - architecture, technology, and project-structure changes go into this file
 
@@ -307,13 +312,43 @@ This makes the MVP testable even without a running local LLM.
 ├── README.md
 ├── docs
 │   ├── README.md
+│   ├── agents
+│   │   ├── backend-agent.md
+│   │   ├── documentation-agent.md
+│   │   └── frontend-agent.md
+│   ├── diagrams
+│   │   ├── architecture.eraserdiagram
+│   │   ├── architecture.excalidraw
+│   │   ├── planner-flow.eraserdiagram
+│   │   └── planner-flow.excalidraw
 │   ├── skills
-│   │   └── frontend-design.md
-│   └── skills.md
+│   │   ├── eraser-diagrams.md
+│   │   ├── excalidraw-diagram.md
+│   │   ├── frontend-design.md
+│   │   ├── skills.md
+│   │   └── ui-ux-pro-max.md
+│   ├── api.md
+│   ├── architecture.md
+│   ├── data-sources.md
+│   ├── roadmap.md
+│   └── setup.md
+├── CHANGELOG.md
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
 ├── index.html
+├── client
+│   ├── App.tsx
+│   ├── api.ts
+│   ├── constants.ts
+│   ├── index.css
+│   ├── main.tsx
+│   ├── types.ts
+│   ├── vite-env.d.ts
+│   └── components
+│       ├── ResultsPanel.tsx
+│       ├── TripForm.tsx
+│       └── TripMap.tsx
 ├── server
 │   ├── index.ts
 │   ├── planner.ts
@@ -321,22 +356,12 @@ This makes the MVP testable even without a running local LLM.
 │   ├── fallback.ts
 │   ├── scoring.ts
 │   ├── time.ts
+│   ├── types.ts
 │   └── services
 │       ├── geocoding.ts
 │       ├── overpass.ts
 │       ├── ollama.ts
 │       └── sun.ts
-└── src
-    ├── App.tsx
-    ├── main.tsx
-    ├── index.css
-    ├── api.ts
-    ├── constants.ts
-    ├── types.ts
-    └── components
-        ├── TripForm.tsx
-        ├── ResultsPanel.tsx
-        └── TripMap.tsx
 ```
 
 ## Development Roadmap

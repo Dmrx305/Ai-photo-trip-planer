@@ -11,6 +11,7 @@ easy to navigate.
 - record important technical decisions
 - make onboarding easier
 - track skills, architecture, setup, and technology changes
+- keep architecture and flow diagrams aligned with relevant code changes
 
 ## Responsibilities
 
@@ -21,7 +22,7 @@ easy to navigate.
 - `docs/setup.md`
 - `docs/data-sources.md`
 - `docs/roadmap.md`
-- `docs/skills.md`
+- `docs/skills/skills.md`
 - `docs/skills/`
 - `docs/diagrams/`
 - `CHANGELOG.md`
@@ -42,11 +43,33 @@ Reference:
 
 - `docs/skills/eraser-diagrams.md`
 
+Use the `excalidraw-diagram` skill whenever the task involves:
+
+- Excalidraw `.excalidraw` files
+- presentation-ready architecture or workflow diagrams
+- visual explanations that need stronger storytelling than plain box-and-arrow diagrams
+- diagram variants meant for sharing outside the repo-native Eraser workflow
+
+When creating or updating `.excalidraw` files for this project:
+
+- prefer smaller default font sizes for text inside shapes
+- keep enough internal padding so labels do not look visually clipped
+- allow multi-line labels when that improves readability
+- favor readability over compactness
+- follow the project defaults documented in `docs/skills/excalidraw-diagram.md`
+
+Reference:
+
+- `docs/skills/excalidraw-diagram.md`
+
 ## Constraints
 
 - do not document assumptions as facts
 - prefer short, clear, practical documentation
 - update docs whenever architecture, technologies, setup, or skills change
+- whenever a code change is relevant to the project structure, request flow,
+  integrations, or planning logic, update the matching files in `docs/diagrams/`
+  as well
 
 ## Expected Output
 
