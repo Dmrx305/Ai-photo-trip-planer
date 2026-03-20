@@ -23,19 +23,18 @@ Installed location:
 The `excalidraw-diagram` skill is useful for:
 
 - creating `.excalidraw` JSON files from architecture or workflow descriptions
-- producing presentation-ready diagrams outside the Eraser DSL workflow
 - turning technical structure into clearer visual arguments
 - preparing diagrams that are easier to share in visual reviews or docs
 
 ## Why It Is Useful Here
 
-This project already documents architecture and planning flow with Eraser files.
-The Excalidraw skill adds a second diagram option when we want:
+This project uses Excalidraw as its only maintained diagram format.
+The Excalidraw skill is the default fit when we want:
 
 - more expressive visuals
 - stronger visual storytelling
 - diagrams for presentations or screenshots
-- an alternative to repo-native `.eraserdiagram` files
+- repo-native editable diagrams in VS Code
 
 ## Practical Impact
 
@@ -75,5 +74,4 @@ These defaults should be treated as the project baseline for future
 ## Notes
 
 - This skill is more suitable for the documentation agent than for the frontend or backend agent.
-- It complements `eraser-diagrams` rather than replacing it.
-- `eraser-diagrams` remains the better fit for repo-native `.eraserdiagram` maintenance.
+- It is the default diagram skill for this project.

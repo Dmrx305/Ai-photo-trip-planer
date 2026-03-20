@@ -31,10 +31,10 @@ Main files:
 
 ## Diagrams
 
-The project now includes Eraser diagram-as-code files for the current MVP:
+The project uses Excalidraw files as the single diagram format for the current MVP:
 
-- `docs/diagrams/architecture.eraserdiagram`
-- `docs/diagrams/planner-flow.eraserdiagram`
+- `docs/diagrams/architecture.excalidraw`
+- `docs/diagrams/planner-flow.excalidraw`
 
 ### Backend
 

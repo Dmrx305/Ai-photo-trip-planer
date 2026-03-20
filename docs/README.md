@@ -12,8 +12,6 @@ to turn a few user inputs into a practical, photography-focused itinerary.
 - `docs/setup.md` -> local development setup and environment
 - `docs/data-sources.md` -> external APIs, limits, and fallback assumptions
 - `docs/roadmap.md` -> MVP and planned next phases
-- `docs/diagrams/architecture.eraserdiagram` -> Eraser cloud architecture diagram
-- `docs/diagrams/planner-flow.eraserdiagram` -> Eraser flow chart for trip generation
 - `docs/diagrams/architecture.excalidraw` -> Excalidraw architecture diagram
 - `docs/diagrams/planner-flow.excalidraw` -> Excalidraw trip planning flow diagram
 - `docs/agents/frontend-agent.md` -> frontend role definition
@@ -22,7 +20,6 @@ to turn a few user inputs into a practical, photography-focused itinerary.
 - `docs/skills/skills.md` -> skill index used in this project
 - `docs/skills/frontend-design.md` -> dedicated notes for the frontend-design skill
 - `docs/skills/ui-ux-pro-max.md` -> dedicated notes for the ui-ux-pro-max skill
-- `docs/skills/eraser-diagrams.md` -> dedicated notes for the Eraser diagram skill
 - `docs/skills/excalidraw-diagram.md` -> dedicated notes for the Excalidraw diagram skill
 - `CHANGELOG.md` -> notable project changes and releases
 
@@ -44,6 +41,7 @@ Rules:
 - skill-related updates go into `docs/skills/skills.md` and detailed skill pages under
   `docs/skills/`
 - architecture, technology, and project-structure changes go into this file
+- all project diagrams should be maintained as `.excalidraw` files
 
 ## Project Goal
 
@@ -317,12 +315,9 @@ This makes the MVP testable even without a running local LLM.
 │   │   ├── documentation-agent.md
 │   │   └── frontend-agent.md
 │   ├── diagrams
-│   │   ├── architecture.eraserdiagram
 │   │   ├── architecture.excalidraw
-│   │   ├── planner-flow.eraserdiagram
 │   │   └── planner-flow.excalidraw
 │   ├── skills
-│   │   ├── eraser-diagrams.md
 │   │   ├── excalidraw-diagram.md
 │   │   ├── frontend-design.md
 │   │   ├── skills.md

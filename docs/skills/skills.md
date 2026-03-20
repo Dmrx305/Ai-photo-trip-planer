@@ -41,18 +41,6 @@ Documentation:
 
 - [ui-ux-pro-max skill notes](ui-ux-pro-max.md)
 
-### `eraser-diagrams`
-
-Status:
-
-- installed
-- relevant to this project
-- assigned to the documentation agent for diagram work
-
-Documentation:
-
-- [eraser-diagrams skill notes](eraser-diagrams.md)
-
 ### `excalidraw-diagram`
 
 Status:
@@ -79,7 +67,6 @@ Used in this project for:
 
 - installing `frontend-design` from `anthropics/skills`
 - installing `ui-ux-pro-max` from `nextlevelbuilder/ui-ux-pro-max-skill`
-- installing `eraser-diagrams` from `eraserlabs/eraser-io`
 - installing `excalidraw-diagram` from `coleam00/excalidraw-diagram-skill`
 
 ## Notes
