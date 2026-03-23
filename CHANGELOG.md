@@ -8,6 +8,7 @@ The format is intentionally lightweight for now.
 
 - added a dedicated `docs/` structure for project documentation
 - added architecture, API, setup, data source, and roadmap documentation
+- documented the verified local Ollama setup and runtime behavior
 
 ## v0.1.0 - 2026-03-17
 

@@ -89,6 +89,10 @@ Responsibilities:
 11. If Ollama is unavailable, the fallback generator returns a usable plan.
 12. The frontend renders the spot list and map view.
 
+For the current local setup, the Ollama path has been verified end-to-end with
+the installed `llama3.1:8b` model. Fallback mode remains the backup path, not
+the default path, as long as the local Ollama service is running.
+
 ## Why The Current Architecture Fits The MVP
 
 This architecture keeps the MVP practical and inexpensive:

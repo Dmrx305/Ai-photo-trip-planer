@@ -27,14 +27,53 @@ Create your local environment file based on `.env.example` when needed.
 
 ## Start Ollama
 
-Example:
+The current local setup was verified with:
+
+- `Ollama.app` on macOS
+- model: `llama3.1:8b`
+
+Recommended first-time setup:
+
+```bash
+open -a /Applications/Ollama.app
+'/Applications/Ollama.app/Contents/Resources/ollama' pull llama3.1:8b
+```
+
+If `ollama` is available in your `PATH`, the equivalent CLI flow is:
 
 ```bash
 ollama pull llama3.1:8b
 ollama serve
 ```
 
-If Ollama is not running, the app still works in fallback mode.
+Notes:
+
+- the project defaults to `llama3.1:8b`
+- on macOS, starting `Ollama.app` is usually enough to make the local service available
+- the first larger generation can take noticeably longer while the model is loading and warming up
+- if Ollama is not running, the app still works in fallback mode
+
+## Verify Ollama
+
+Quick checks:
+
+```bash
+curl http://127.0.0.1:11434/api/tags
+curl http://127.0.0.1:11434/api/generate \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"llama3.1:8b","prompt":"Return only this exact JSON: {\"ok\":true}","stream":false,"format":"json"}'
+```
+
+Expected result:
+
+- `/api/tags` lists `llama3.1:8b`
+- `/api/generate` returns a valid JSON string in the `response` field
+
+The current project setup has already been verified against the real planner flow:
+
+- Ollama service reachable on `127.0.0.1:11434`
+- model `llama3.1:8b` installed locally
+- planner output confirmed with `generatedWith: "ollama"`
 
 ## Start The App
 
@@ -67,6 +106,19 @@ Result:
 
 - plan generation still works
 - the backend returns a fallback-based plan instead of Ollama-enriched text
+
+### Ollama is installed but responses are slow
+
+Possible reasons:
+
+- first model load after startup
+- larger planner prompts with multiple spots
+- limited local hardware resources
+
+What to expect:
+
+- the first AI-enriched trip can take significantly longer than later requests
+- the fallback is only used if Ollama is unreachable or returns invalid JSON
 
 ### Too few spots found
 

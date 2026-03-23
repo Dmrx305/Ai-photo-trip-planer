@@ -110,6 +110,13 @@ Not included yet:
 The model is configurable. For the current MVP, a mid-sized model is a good
 starting point for consumer hardware.
 
+The local Ollama runtime has been verified for this project:
+
+- `Ollama.app` installed on macOS
+- `llama3.1:8b` pulled successfully
+- planner output confirmed with `generatedWith: "ollama"`
+- fallback remains as the resilience path if the local LLM is unavailable
+
 ## Free APIs Used
 
 ### 1. Nominatim
