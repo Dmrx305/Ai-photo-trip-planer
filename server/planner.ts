@@ -30,7 +30,9 @@ export async function createTripPlan(input: unknown): Promise<TripPlan> {
   ]);
 
   if (candidateSpots.length < 3) {
-    throw new Error("Zu wenige geeignete Spots gefunden. Versuche eine groessere Stadt oder weniger spezifische Filter.");
+    throw new Error(
+      "Too few suitable spots were found. Try a larger city or broader filters."
+    );
   }
 
   const selectedSpots = selectBestSpots(location, candidateSpots, request.styles, request.pace);
@@ -68,9 +70,9 @@ export async function createTripPlan(input: unknown): Promise<TripPlan> {
       summary: aiPlan.summary || fallbackPlan.summary,
       routePolyline: enrichedSpots.map((spot) => ({ lat: spot.lat, lon: spot.lon })),
       notes: [
-        `Sonnenaufgang: ${sunTimes.sunrise}`,
-        `Sonnenuntergang: ${sunTimes.sunset}`,
-        "Die Reihenfolge basiert im MVP auf einer Distanz-Heuristik, nicht auf echter Strassennavigation.",
+        `Sunrise: ${sunTimes.sunrise}`,
+        `Sunset: ${sunTimes.sunset}`,
+        "In the MVP, route order is based on a distance heuristic rather than real road navigation.",
         ...(aiPlan.notes ?? [])
       ],
       generatedWith: "ollama",

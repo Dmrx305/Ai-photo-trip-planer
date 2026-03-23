@@ -24,7 +24,7 @@ export async function geocodeCity(city: string): Promise<GeocodedPlace> {
   }>;
 
   if (!data[0]) {
-    throw new Error("Kein Ort fuer diese Eingabe gefunden.");
+    throw new Error("No location could be found for that input.");
   }
 
   const item = data[0];

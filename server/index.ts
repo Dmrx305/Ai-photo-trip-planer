@@ -22,12 +22,12 @@ app.post("/api/plan-trip", async (request, response) => {
     response.json(plan);
   } catch (error) {
     if (error instanceof ZodError) {
-      response.status(400).send("Ungueltige Eingabedaten.");
+      response.status(400).send("Invalid input data.");
       return;
     }
 
     const message =
-      error instanceof Error ? error.message : "Unbekannter Serverfehler.";
+      error instanceof Error ? error.message : "Unknown server error.";
     response.status(500).send(message);
   }
 });

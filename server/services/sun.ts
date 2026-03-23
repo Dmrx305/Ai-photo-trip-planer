@@ -2,7 +2,7 @@ import type { SunTimes } from "../types";
 
 function toLocalTime(value: string) {
   const date = new Date(value);
-  return date.toLocaleTimeString("de-DE", {
+  return date.toLocaleTimeString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false
@@ -17,7 +17,7 @@ export async function fetchSunTimes(lat: number, lon: number): Promise<SunTimes>
 
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("Sonnenzeiten konnten nicht geladen werden.");
+    throw new Error("Sun times could not be loaded.");
   }
 
   const data = (await response.json()) as {

@@ -53,6 +53,7 @@ Rules:
 - Keep the existing spot order.
 - Use all provided spots.
 - Tailor the descriptions to the requested vibe and styles.
+- Write all returned text in English.
 - Be concise and practical.
 - Mention photography cues like reflections, layers, silhouettes, geometry, movement, framing, or texture when relevant.
 - If the user wants a relaxed plan, keep the tone calm and low pressure.

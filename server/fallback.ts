@@ -3,19 +3,19 @@ import type { CandidateSpot, SunTimes, TripPlan, TripRequest } from "./types";
 function describeType(type: string) {
   switch (type) {
     case "cafe":
-      return "ruhige Szenen, Details und Alltagsmomente";
+      return "quiet scenes, details, and everyday moments";
     case "viewpoint":
-      return "weite Perspektiven und Layering im Bild";
+      return "wide perspectives and layered compositions";
     case "waterfront":
-      return "Reflexionen, offene Linien und Licht am Wasser";
+      return "reflections, open lines, and light near the water";
     case "architecture":
-      return "saubere Geometrie, Fassaden und Symmetrie";
+      return "clean geometry, facades, and symmetry";
     case "street":
-      return "Bewegung, Gesten und urbane Zwischentoene";
+      return "movement, gestures, and urban in-between moments";
     case "park":
-      return "ruhigere Kontraste zwischen Natur und Stadt";
+      return "quieter contrasts between nature and the city";
     default:
-      return "eine vielseitige fotografische Szene";
+      return "a versatile photographic scene";
   }
 }
 
@@ -23,22 +23,22 @@ function buildIdeas(spot: CandidateSpot, request: TripRequest): string[] {
   const primaryStyle = request.styles[0];
 
   const ideas = [
-    `Arbeite mit ${describeType(spot.type)} und einer klaren Vordergrundebene.`,
+    `Work with ${describeType(spot.type)} and a clear foreground layer.`,
     request.vibe
-      ? `Halte die Bildstimmung ${request.vibe} ueber Licht, Abstand und Farbkontraste konsistent.`
-      : "Suche nach einer klaren Bildidee mit Linien, Bewegung oder Textur."
+      ? `Keep the ${request.vibe} mood consistent through light, spacing, and color contrast.`
+      : "Look for a clear visual idea built around lines, movement, or texture."
   ];
 
   if (primaryStyle === "architecture") {
-    ideas[0] = "Suche nach Symmetrie, negativen Flaechen und fuehrenden Linien.";
+    ideas[0] = "Look for symmetry, negative space, and leading lines.";
   }
 
   if (primaryStyle === "street") {
-    ideas[0] = "Warte auf einzelne Personen oder Bewegung, um die Szene zu verdichten.";
+    ideas[0] = "Wait for isolated people or motion to tighten the composition.";
   }
 
   if (request.styles.includes("sunset")) {
-    ideas[1] = "Nutze warmes Seitenlicht fuer Silhouetten, Reflexionen oder weiche Kontraste.";
+    ideas[1] = "Use warm side light for silhouettes, reflections, or softer contrast.";
   }
 
   return ideas;
@@ -46,7 +46,7 @@ function buildIdeas(spot: CandidateSpot, request: TripRequest): string[] {
 
 function buildReason(spot: CandidateSpot, request: TripRequest) {
   const styleText = request.styles.join(", ");
-  return `${spot.name} passt zu ${styleText}, weil der Spot ${describeType(spot.type)} bietet.`;
+  return `${spot.name} fits ${styleText} because the location offers ${describeType(spot.type)}.`;
 }
 
 export function buildFallbackPlan(
@@ -61,8 +61,8 @@ export function buildFallbackPlan(
       request.styles.includes("sunset") && index === orderedSpots.length - 1;
 
     const bestTime = isSunsetSlot
-      ? `nahe ${sunTimes.sunset}`
-      : window?.bestTime || "wenn das Licht seitlich oder etwas weicher wird";
+      ? `around ${sunTimes.sunset}`
+      : window?.bestTime || "when the light turns softer or more directional";
 
     return {
       ...spot,
@@ -70,20 +70,20 @@ export function buildFallbackPlan(
       bestTime,
       timeWindow: window?.timeWindow || `Stop ${index + 1}`,
       reason: buildReason(spot, request),
-      description: `${spot.name} eignet sich gut fuer ${describeType(spot.type)} und bleibt im Rahmen eines ${request.pace}en Tagesplans fotografisch vielseitig.`,
+      description: `${spot.name} works well for ${describeType(spot.type)} and stays visually useful within a ${request.pace} day plan.`,
       photoIdeas: buildIdeas(spot, request)
     };
   });
 
   return {
-    title: `${request.city}: fotografischer Tagesplan`,
-    summary: `Ein kompakter Plan mit ${spots.length} Spots, passend zu ${request.styles.join(", ")} und einem ${request.pace}en Rhythmus.`,
+    title: `${request.city}: photo day plan`,
+    summary: `A compact route with ${spots.length} stops, shaped around ${request.styles.join(", ")} and a ${request.pace} pace.`,
     routePolyline: spots.map((spot) => ({ lat: spot.lat, lon: spot.lon })),
     notes: [
-      `Sonnenaufgang: ${sunTimes.sunrise}`,
-      `Sonnenuntergang: ${sunTimes.sunset}`,
-      "Die Reihenfolge basiert im MVP auf einer Distanz-Heuristik, nicht auf echter Strassennavigation.",
-      "Ollama war nicht erreichbar oder hat kein valides JSON geliefert, deshalb wurde ein Fallback verwendet."
+      `Sunrise: ${sunTimes.sunrise}`,
+      `Sunset: ${sunTimes.sunset}`,
+      "In the MVP, route order is based on a distance heuristic rather than real road navigation.",
+      "Ollama was unavailable or returned invalid JSON, so the fallback planner was used."
     ],
     generatedWith: "fallback",
     spots
