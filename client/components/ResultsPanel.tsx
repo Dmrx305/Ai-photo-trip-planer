@@ -11,10 +11,10 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
     return (
       <section className="panel results-panel placeholder-panel">
         <p className="eyebrow">Planning</p>
-        <h2>Der Plan wird zusammengesetzt</h2>
+        <h2>The plan is coming together</h2>
         <div className="placeholder-stack">
           <p className="muted">
-            Es werden Orte gesucht, geordnet und mit Fotoideen angereichert.
+            Spots are being gathered, ordered, and refined with photographic cues.
           </p>
           <div className="placeholder-card" />
           <div className="placeholder-card" />
@@ -28,8 +28,12 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
     return (
       <section className="panel results-panel">
         <p className="eyebrow">Problem</p>
-        <h2>Der Trip konnte nicht erstellt werden</h2>
+        <h2>The trip could not be created</h2>
         <p className="muted">{error}</p>
+        <div className="error-help">
+          <strong>Try next:</strong>
+          <p>a different city, at least one photo style, and a slightly broader visual mood.</p>
+        </div>
       </section>
     );
   }
@@ -38,23 +42,23 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
     return (
       <section className="panel results-panel placeholder-panel">
         <p className="eyebrow">Output</p>
-        <h2>Hier erscheint dein Fotoplan</h2>
+        <h2>Your photo plan will appear here</h2>
         <div className="placeholder-stack">
           <p className="muted">
-            Du bekommst eine kurze Tagesstruktur, passende Spots und Shot-Ideen.
+            You will get a clear route structure with fitting stops, timing windows, and shot ideas.
           </p>
           <div className="preview-list">
             <div className="preview-item">
               <strong>Stop 1</strong>
-              <span>ruhiger Einstieg mit Licht und Stimmung</span>
+              <span>quiet opening with strong light and atmosphere</span>
             </div>
             <div className="preview-item">
               <strong>Stop 2</strong>
-              <span>urbaner Mittelteil mit Bewegung und Details</span>
+              <span>urban middle section with motion and detail</span>
             </div>
             <div className="preview-item">
               <strong>Stop 3</strong>
-              <span>spaeteres Licht fuer Abschluss oder Sunset</span>
+              <span>later light for the final stop or sunset</span>
             </div>
           </div>
         </div>
@@ -69,24 +73,33 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
         <div className="results-headline">
           <h2>{plan.title}</h2>
           <span className={`status-pill ${plan.generatedWith}`}>
-            {plan.generatedWith === "ollama" ? "Mit Ollama" : "Fallback"}
+            {plan.generatedWith === "ollama" ? "With Ollama" : "Fallback"}
           </span>
         </div>
         <p className="muted">{plan.summary}</p>
       </div>
 
-      <div className="results-metrics">
-        <div className="result-metric">
-          <span>Spots</span>
-          <strong>{plan.spots.length}</strong>
+      <div className="results-overview">
+        <div className="results-metrics">
+          <div className="result-metric">
+            <span>Spots</span>
+            <strong>{plan.spots.length}</strong>
+          </div>
+          <div className="result-metric">
+            <span>Engine</span>
+            <strong>{plan.generatedWith === "ollama" ? "Ollama" : "Fallback"}</strong>
+          </div>
+          <div className="result-metric">
+            <span>Route</span>
+            <strong>ordered</strong>
+          </div>
         </div>
-        <div className="result-metric">
-          <span>Engine</span>
-          <strong>{plan.generatedWith === "ollama" ? "Ollama" : "Fallback"}</strong>
-        </div>
-        <div className="result-metric">
-          <span>Route</span>
-          <strong>In Reihenfolge</strong>
+
+        <div className="results-route-card">
+          <span className="results-route-label">Route arc</span>
+          <p>
+            The route is arranged as an opening, middle section, and finish so the day feels deliberate instead of random.
+          </p>
         </div>
       </div>
 
@@ -104,18 +117,39 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
         {plan.spots.map((spot) => (
           <article key={spot.id} className="spot-card">
             <div className="spot-card-top">
-              <div>
+              <div className="spot-heading-block">
                 <p className="spot-index">Stop {spot.rank}</p>
                 <h3>{spot.name}</h3>
+                <p className="spot-meta">
+                  Best time: {spot.bestTime} · Type: {spot.type}
+                </p>
               </div>
               <div className="time-badge">{spot.timeWindow}</div>
             </div>
 
-            <p className="spot-meta">
-              Beste Zeit: {spot.bestTime} · Typ: {spot.type}
-            </p>
-            <p className="spot-description">{spot.description}</p>
-            <p className="muted">{spot.reason}</p>
+            {spot.tags.length > 0 ? (
+              <div className="spot-tag-row">
+                {spot.tags.slice(0, 4).map((tag) => (
+                  <span key={`${spot.id}-${tag}`} className="spot-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+
+            <div className="spot-copy-grid">
+              <div>
+                <p className="spot-description">{spot.description}</p>
+                <p className="muted">{spot.reason}</p>
+              </div>
+
+              <div className="spot-side-note">
+                <span className="spot-side-note-label">Shot cues</span>
+                <p>
+                  Work here with rhythm, contrast, and observation instead of only chasing postcard shots.
+                </p>
+              </div>
+            </div>
 
             <div className="idea-block">
               {spot.photoIdeas.map((idea) => (

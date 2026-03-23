@@ -20,11 +20,24 @@ export function TripMap({ plan }: TripMapProps) {
     return (
       <section className="panel map-panel empty-map">
         <p className="eyebrow">Map</p>
-        <h2>Die Route wird hier visualisiert</h2>
+        <h2>The route will be visualized here</h2>
         <p className="muted">
-          Nach der Generierung siehst du Marker, Reihenfolge und die einfache Linie
-          zwischen den Spots.
+          After generation, you will see markers, route order, and a simple visual path.
         </p>
+        <div className="empty-route-grid">
+          <div className="empty-route-card">
+            <strong>1. Start</strong>
+            <span>quiet opening location</span>
+          </div>
+          <div className="empty-route-card">
+            <strong>2. Middle</strong>
+            <span>urban or architectural focus</span>
+          </div>
+          <div className="empty-route-card">
+            <strong>3. Finish</strong>
+            <span>light or sunset as the final anchor</span>
+          </div>
+        </div>
       </section>
     );
   }
@@ -36,13 +49,24 @@ export function TripMap({ plan }: TripMapProps) {
     <section className="panel map-panel">
       <div className="panel-header">
         <p className="eyebrow">Map</p>
-        <h2>Route und Spots</h2>
+        <h2>Route and spots</h2>
         <div className="map-meta-row">
-          <span className="map-meta-pill">{plan.spots.length} Stops</span>
+          <span className="map-meta-pill">{plan.spots.length} stops</span>
           <span className="map-meta-pill">
-            {plan.generatedWith === "ollama" ? "Mit Ollama angereichert" : "Fallback aktiv"}
+            {plan.generatedWith === "ollama" ? "Enriched with Ollama" : "Fallback active"}
           </span>
         </div>
+      </div>
+      <div className="route-strip">
+        {plan.spots.map((spot) => (
+          <div key={spot.id} className="route-stop">
+            <span className="route-stop-index">{spot.rank}</span>
+            <div>
+              <strong>{spot.name}</strong>
+              <p>{spot.timeWindow}</p>
+            </div>
+          </div>
+        ))}
       </div>
       <div className="map-frame">
         <MapContainer center={center} zoom={13} scrollWheelZoom className="leaflet-map">
@@ -50,7 +74,7 @@ export function TripMap({ plan }: TripMapProps) {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Polyline positions={polyline} pathOptions={{ color: "#c55d2d", weight: 4 }} />
+          <Polyline positions={polyline} pathOptions={{ color: "#2c6a6d", weight: 5 }} />
           {plan.spots.map((spot) => (
             <Marker key={spot.id} position={[spot.lat, spot.lon]}>
               <Popup>

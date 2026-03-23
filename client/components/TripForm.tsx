@@ -37,48 +37,46 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
     <form className="panel form-panel" onSubmit={handleSubmit}>
       <div className="panel-header">
         <p className="eyebrow">Trip Input</p>
-        <h2>Plane einen fotografischen Tagestrip</h2>
+        <h2>Shape the day before the route is built</h2>
         <p className="muted">
-          Wenige Angaben reichen. Die App kombiniert freie Kartendaten mit einem
-          lokalen Ollama-Modell.
+          A few inputs are enough. Place, light, pace, and image style become a cleaner daily route.
         </p>
       </div>
 
       <div className="form-callout">
-        <strong>Fokus fuer das MVP:</strong> ein klarer, visuell sinnvoller
-        Tagesplan statt maximal viele Optionen.
+        <strong>MVP focus:</strong> a composed day with 3 to 5 strong stops instead of an overloaded checklist.
       </div>
 
       <section className="form-section">
         <div className="section-heading">
-          <p className="eyebrow">Ort</p>
-          <h3>Wohin geht der Trip?</h3>
+          <p className="eyebrow">Location</p>
+          <h3>Where should the trip happen?</h3>
         </div>
 
         <label className="field">
-          <span>Stadt oder Region</span>
+          <span>City or region</span>
           <input
             type="text"
             value={value.city}
             onChange={(event) => updateField("city", event.target.value)}
-            placeholder="z. B. Kopenhagen"
+            placeholder="e.g. Copenhagen"
             required
           />
           <small className="field-hint">
-            Die Suche startet ueber OpenStreetMap-Daten fuer diese Region.
+            Search starts from OpenStreetMap data for this area.
           </small>
         </label>
       </section>
 
       <section className="form-section">
         <div className="section-heading">
-          <p className="eyebrow">Rhythmus</p>
-          <h3>Wie soll sich der Tag anfuehlen?</h3>
+          <p className="eyebrow">Pacing</p>
+          <h3>How should the day feel?</h3>
         </div>
 
         <div className="field-grid">
           <label className="field">
-            <span>Dauer</span>
+            <span>Duration</span>
             <select
               value={value.duration}
               onChange={(event) => updateField("duration", event.target.value as TripRequest["duration"])}
@@ -92,7 +90,7 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
           </label>
 
           <label className="field">
-            <span>Reisestil</span>
+            <span>Travel pace</span>
             <select
               value={value.pace}
               onChange={(event) => updateField("pace", event.target.value as TripRequest["pace"])}
@@ -108,7 +106,7 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
 
         <div className="field-grid">
           <label className="field">
-            <span>Startzeit</span>
+            <span>Start time</span>
             <input
               type="time"
               value={value.startTime}
@@ -117,7 +115,7 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
           </label>
 
           <label className="field">
-            <span>Verkehrsmittel</span>
+            <span>Transport</span>
             <select
               value={value.transport}
               onChange={(event) => updateField("transport", event.target.value as TripRequest["transport"])}
@@ -134,12 +132,12 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
 
       <section className="form-section">
         <div className="section-heading">
-          <p className="eyebrow">Bildwelt</p>
-          <h3>Welche Motive sollen priorisiert werden?</h3>
+          <p className="eyebrow">Visual direction</p>
+          <h3>What kinds of images should lead the day?</h3>
         </div>
 
         <div className="field">
-          <span>Fotostile</span>
+          <span>Photo styles</span>
           <div className="chip-grid">
             {styleOptions.map((option) => {
               const isActive = value.styles.includes(option.value);
@@ -156,25 +154,28 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
             })}
           </div>
           <small className="field-hint">
-            Mehrere Stile helfen der Planung bei der Spot-Auswahl und Tagesdramaturgie.
+            Combining styles helps the planner build better spot variety and pacing.
           </small>
         </div>
 
         <label className="field">
-          <span>Bildstimmung oder Vibe</span>
-          <input
-            type="text"
+          <span>Visual mood or vibe</span>
+          <textarea
             value={value.vibe}
             onChange={(event) => updateField("vibe", event.target.value)}
-            placeholder="moody, ruhig, cineastisch, urban..."
+            placeholder="moody, quiet, cinematic, urban..."
+            rows={3}
           />
+          <small className="field-hint">
+            For example: fewer people, clean lines, warm evening light, or moody street scenes.
+          </small>
         </label>
       </section>
 
       <section className="form-section">
         <div className="section-heading">
           <p className="eyebrow">Optional</p>
-          <h3>Rahmenbedingungen</h3>
+          <h3>Constraints and extras</h3>
         </div>
 
         <label className="field">
@@ -192,10 +193,10 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
 
       <div className="submit-block">
         <button className="primary-button" type="submit" disabled={isLoading || value.styles.length === 0}>
-          {isLoading ? "Trip wird erstellt..." : "Fototrip generieren"}
+          {isLoading ? "Building trip..." : "Generate photo trip"}
         </button>
         <p className="submit-note">
-          Der Plan verbindet echte Spots, sinnvolle Reihenfolge und fotografische Ideen.
+          The plan combines real spots, route order, light timing, and shot ideas.
         </p>
       </div>
     </form>

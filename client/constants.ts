@@ -9,19 +9,19 @@ export const styleOptions: Array<{ value: PhotoStyle; label: string }> = [
 ];
 
 export const paceOptions: Array<{ value: TripPace; label: string }> = [
-  { value: "relaxed", label: "Entspannt" },
-  { value: "balanced", label: "Ausgewogen" },
-  { value: "packed", label: "Viele Spots" }
+  { value: "relaxed", label: "Relaxed" },
+  { value: "balanced", label: "Balanced" },
+  { value: "packed", label: "Packed" }
 ];
 
 export const durationOptions: Array<{ value: TripDuration; label: string }> = [
-  { value: "half-day", label: "Halber Tag" },
-  { value: "full-day", label: "Ganzer Tag" }
+  { value: "half-day", label: "Half day" },
+  { value: "full-day", label: "Full day" }
 ];
 
 export const transportOptions: Array<{ value: TransportMode; label: string }> = [
-  { value: "walk", label: "Zu Fuss" },
-  { value: "bike", label: "Fahrrad" },
-  { value: "car", label: "Auto" },
-  { value: "public-transport", label: "Oeffis" }
+  { value: "walk", label: "On foot" },
+  { value: "bike", label: "Bike" },
+  { value: "car", label: "Car" },
+  { value: "public-transport", label: "Public transport" }
 ];
