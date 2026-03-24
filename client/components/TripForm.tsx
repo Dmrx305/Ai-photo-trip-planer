@@ -37,20 +37,14 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
     <form className="panel form-panel" onSubmit={handleSubmit}>
       <div className="panel-header">
         <p className="eyebrow">Trip Input</p>
-        <h2>Shape the day before the route is built</h2>
-        <p className="muted">
-          A few inputs are enough. Place, light, pace, and image style become a cleaner daily route.
-        </p>
-      </div>
-
-      <div className="form-callout">
-        <strong>MVP focus:</strong> a composed day with 3 to 5 strong stops instead of an overloaded checklist.
+        <h2>Set the basics for the day</h2>
+        <p className="muted">Keep it simple: place, pace, style, and mood.</p>
       </div>
 
       <section className="form-section">
         <div className="section-heading">
-          <p className="eyebrow">Location</p>
-          <h3>Where should the trip happen?</h3>
+          <p className="eyebrow">Trip basics</p>
+          <h3>Where and how should the day unfold?</h3>
         </div>
 
         <label className="field">
@@ -62,17 +56,8 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
             placeholder="e.g. Copenhagen"
             required
           />
-          <small className="field-hint">
-            Search starts from OpenStreetMap data for this area.
-          </small>
+          <small className="field-hint">The search starts from this area.</small>
         </label>
-      </section>
-
-      <section className="form-section">
-        <div className="section-heading">
-          <p className="eyebrow">Pacing</p>
-          <h3>How should the day feel?</h3>
-        </div>
 
         <div className="field-grid">
           <label className="field">
@@ -103,6 +88,13 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
             </select>
           </label>
         </div>
+      </section>
+
+      <section className="form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Photo direction</p>
+          <h3>What should the trip look like?</h3>
+        </div>
 
         <div className="field-grid">
           <label className="field">
@@ -128,13 +120,6 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
             </select>
           </label>
         </div>
-      </section>
-
-      <section className="form-section">
-        <div className="section-heading">
-          <p className="eyebrow">Visual direction</p>
-          <h3>What kinds of images should lead the day?</h3>
-        </div>
 
         <div className="field">
           <span>Photo styles</span>
@@ -153,9 +138,6 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
               );
             })}
           </div>
-          <small className="field-hint">
-            Combining styles helps the planner build better spot variety and pacing.
-          </small>
         </div>
 
         <label className="field">
@@ -166,17 +148,8 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
             placeholder="moody, quiet, cinematic, urban..."
             rows={3}
           />
-          <small className="field-hint">
-            For example: fewer people, clean lines, warm evening light, or moody street scenes.
-          </small>
+          <small className="field-hint">Example: fewer people, clean lines, warm evening light.</small>
         </label>
-      </section>
-
-      <section className="form-section">
-        <div className="section-heading">
-          <p className="eyebrow">Optional</p>
-          <h3>Constraints and extras</h3>
-        </div>
 
         <label className="field">
           <span>Budget in EUR</span>
@@ -195,9 +168,6 @@ export function TripForm({ value, isLoading, onChange, onSubmit }: TripFormProps
         <button className="primary-button" type="submit" disabled={isLoading || value.styles.length === 0}>
           {isLoading ? "Building trip..." : "Generate photo trip"}
         </button>
-        <p className="submit-note">
-          The plan combines real spots, route order, light timing, and shot ideas.
-        </p>
       </div>
     </form>
   );

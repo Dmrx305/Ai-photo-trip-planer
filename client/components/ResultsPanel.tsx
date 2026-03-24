@@ -79,30 +79,6 @@ export function ResultsPanel({ plan, error, isLoading }: ResultsPanelProps) {
         <p className="muted">{plan.summary}</p>
       </div>
 
-      <div className="results-overview">
-        <div className="results-metrics">
-          <div className="result-metric">
-            <span>Spots</span>
-            <strong>{plan.spots.length}</strong>
-          </div>
-          <div className="result-metric">
-            <span>Engine</span>
-            <strong>{plan.generatedWith === "ollama" ? "Ollama" : "Fallback"}</strong>
-          </div>
-          <div className="result-metric">
-            <span>Route</span>
-            <strong>ordered</strong>
-          </div>
-        </div>
-
-        <div className="results-route-card">
-          <span className="results-route-label">Route arc</span>
-          <p>
-            The route is arranged as an opening, middle section, and finish so the day feels deliberate instead of random.
-          </p>
-        </div>
-      </div>
-
       {plan.notes.length > 0 ? (
         <div className="note-list">
           {plan.notes.map((note) => (

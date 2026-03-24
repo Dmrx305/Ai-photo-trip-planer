@@ -69,8 +69,7 @@ function App() {
           <div className="hero-copy-block">
             <h1>Plan a photography day that feels composed, not crowded.</h1>
             <p className="hero-copy">
-              A few inputs turn into a readable shooting plan with time windows,
-              route order, location types, and shot ideas shaped around travel and street photography.
+              A few inputs become a clear route with better timing, fitting stops, and practical photo ideas.
             </p>
 
             <div className="hero-badge-row">
@@ -78,29 +77,11 @@ function App() {
               <span className="hero-badge">OpenStreetMap-based spots</span>
               <span className="hero-badge">Timing and sequence first</span>
             </div>
-
-            <div className="hero-feature-grid">
-              <article className="hero-feature-card">
-                <span className="hero-feature-label">Route</span>
-                <strong>Less zig-zagging</strong>
-                <p>The stops are ordered to keep the day clear, calm, and easy to follow.</p>
-              </article>
-              <article className="hero-feature-card">
-                <span className="hero-feature-label">Light</span>
-                <strong>Better timing windows</strong>
-                <p>Morning, afternoon, and golden hour are woven into the route.</p>
-              </article>
-              <article className="hero-feature-card">
-                <span className="hero-feature-label">Visual style</span>
-                <strong>Useful shot ideas</strong>
-                <p>Each stop gets short cues for framing, atmosphere, and what to look for.</p>
-              </article>
-            </div>
           </div>
 
           <aside className="hero-aside">
             <div className="hero-aside-card">
-              <p className="eyebrow">Live Trip Profile</p>
+              <p className="eyebrow">Current Trip Profile</p>
               <h2>{formValue.city}</h2>
               <p className="hero-aside-copy">
                 {formValue.vibe || "Describe the mood and visual direction for the day."}
@@ -141,22 +122,9 @@ function App() {
                 )}
               </div>
 
-              <div className="hero-preview-list">
-                <div className="hero-preview-item">
-                  <span className="hero-preview-index">01</span>
-                  <div>
-                    <strong>Clear starting point</strong>
-                    <p>The day begins with a calm first scene instead of a rushed opening.</p>
-                  </div>
-                </div>
-                <div className="hero-preview-item">
-                  <span className="hero-preview-index">02</span>
-                  <div>
-                    <strong>Balanced pacing</strong>
-                    <p>Quiet, urban, and stronger light moments stay in a readable rhythm.</p>
-                  </div>
-                </div>
-              </div>
+              <p className="hero-profile-note">
+                The planner combines place, pace, light, and style into one readable shooting day.
+              </p>
             </div>
           </aside>
         </div>
@@ -164,31 +132,6 @@ function App() {
 
       <main className="workspace">
         <div className="planner-column">
-          <section className="panel planner-brief">
-            <div className="panel-header">
-              <p className="eyebrow">Planner Setup</p>
-              <h2>Set the tone for the shooting day</h2>
-              <p className="muted">
-                The left side defines the direction. The right side turns it into a route and visual plan.
-              </p>
-            </div>
-
-            <div className="planner-brief-grid">
-              <div className="planner-brief-card">
-                <span className="planner-brief-label">City</span>
-                <strong>{formValue.city}</strong>
-              </div>
-              <div className="planner-brief-card">
-                <span className="planner-brief-label">Styles</span>
-                <strong>{selectedStyleLabels.join(" · ") || "not set yet"}</strong>
-              </div>
-              <div className="planner-brief-card">
-                <span className="planner-brief-label">Pace</span>
-                <strong>{paceLabel}</strong>
-              </div>
-            </div>
-          </section>
-
           <TripForm
             value={formValue}
             isLoading={isLoading}

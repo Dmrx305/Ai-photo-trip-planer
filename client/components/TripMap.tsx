@@ -20,24 +20,8 @@ export function TripMap({ plan }: TripMapProps) {
     return (
       <section className="panel map-panel empty-map">
         <p className="eyebrow">Map</p>
-        <h2>The route will be visualized here</h2>
-        <p className="muted">
-          After generation, you will see markers, route order, and a simple visual path.
-        </p>
-        <div className="empty-route-grid">
-          <div className="empty-route-card">
-            <strong>1. Start</strong>
-            <span>quiet opening location</span>
-          </div>
-          <div className="empty-route-card">
-            <strong>2. Middle</strong>
-            <span>urban or architectural focus</span>
-          </div>
-          <div className="empty-route-card">
-            <strong>3. Finish</strong>
-            <span>light or sunset as the final anchor</span>
-          </div>
-        </div>
+        <h2>The route will appear here</h2>
+        <p className="muted">Generate a plan to see the stops on the map.</p>
       </section>
     );
   }
@@ -49,24 +33,10 @@ export function TripMap({ plan }: TripMapProps) {
     <section className="panel map-panel">
       <div className="panel-header">
         <p className="eyebrow">Map</p>
-        <h2>Route and spots</h2>
+        <h2>Map view</h2>
         <div className="map-meta-row">
           <span className="map-meta-pill">{plan.spots.length} stops</span>
-          <span className="map-meta-pill">
-            {plan.generatedWith === "ollama" ? "Enriched with Ollama" : "Fallback active"}
-          </span>
         </div>
-      </div>
-      <div className="route-strip">
-        {plan.spots.map((spot) => (
-          <div key={spot.id} className="route-stop">
-            <span className="route-stop-index">{spot.rank}</span>
-            <div>
-              <strong>{spot.name}</strong>
-              <p>{spot.timeWindow}</p>
-            </div>
-          </div>
-        ))}
       </div>
       <div className="map-frame">
         <MapContainer center={center} zoom={13} scrollWheelZoom className="leaflet-map">
